@@ -1,0 +1,17 @@
+definitions:
+  Login:
+    type: object
+    properties:
+      username:
+        type: string
+      password:
+        type: string
+  ViewLogin:
+    type: object
+    properties:
+      token:
+        type: string
+      user:
+        $ref: "#/definitions/User"
+  User:
+    type: object

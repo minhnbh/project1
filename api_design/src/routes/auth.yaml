@@ -1,0 +1,29 @@
+paths:
+  /login:
+    post:
+      security: [] # authentication not require for login
+      tags:
+        - auth
+      operationId: login
+      parameters:
+      - in: body
+        name: body
+        description: asasdw
+        required: true
+        schema:
+          $ref: '#/definitions/Login'
+      responses:
+        "200":
+          description: login success
+          schema:
+            $ref: "#/definitions/ViewLogin"
+        "403":
+          description: login failed (may be incorrect password or username, user got banned)
+  /signout:
+    get:
+      tags:
+        - auth
+      operationId: logout
+      responses:
+        "200":
+          description: logout success

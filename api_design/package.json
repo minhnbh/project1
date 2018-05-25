@@ -1,0 +1,20 @@
+{
+  "name": "cryosoft_api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "merge-yaml-cli": "^1.1.1",
+    "ng-swagger-gen": "^0.9.4",
+    "swagger-ui-watcher": "^1.0.7"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "merge": "./node_modules/.bin/merge-yaml -i ./src/api.yaml ./src/security/*.yaml ./src/routes/*.yaml ./src/models/*.yaml -o ./build/swagger.yaml",
+    "tojson": "yarn merge && swagger-codegen generate -i ./build/swagger.yaml -l swagger -o ./build/",
+    "buildng": "./node_modules/.bin/ng-swagger-gen -i ./build/swagger.json -o ../app/src/app/api/",
+    "build": "yarn merge && yarn tojson && yarn buildng",
+    "buildlumen": "swagger-codegen generate -i ./build/swagger.yaml -l lumen -o ../www",
+    "lumen": "yarn merge && yarn buildlumen"
+  }
+}
